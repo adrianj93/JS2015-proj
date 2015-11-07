@@ -1,0 +1,18 @@
+<div class="page_title">Wiadomość</div>
+<div id="maillist">
+    <div style="position: relative">
+        <div class="email_detail_main">
+            <div class="email_detail_date">{{ email.received | date: 'yyyy-MM-dd hh:mm' }}</div>
+            <div class="email_detail_sender">{{ email.sender }}</div>
+            <br clear="both" />
+            <div class="email_detail_title">{{ email.title }}</div>
+            <div>{{ email.content }}</div>
+        </div>
+        <div style="position: relative; height: 50px;">
+            <div ng-controller="EmailController">
+                <div class="button raisedr" ng-click="delete_mail(email.id, '/emails/');" ui-sref="inbox"><paper-ripple></paper-ripple>Usuń</div>
+                <div class="button raisedw"><paper-ripple></paper-ripple>Odpowiedz</div>
+            </div>
+        </div>    
+    </div>  
+</div>

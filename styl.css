@@ -1,0 +1,242 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:300,400&subset=latin,latin-ext);
+
+body {
+    background-color: lightblue;
+    margin: auto;
+    margin:50px 0px; padding:0px;
+	text-align:center;
+    
+    background-color: #f9f9f9;
+      font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      -webkit-touch-callout: none;
+}
+
+a {
+    text-decoration: none;
+    }
+
+.content {
+    margin: 0 auto;
+    width: 800px;
+}
+
+.page_title {
+    background: #F2F2F2;
+    text-align: left;
+    padding: 17px 0px 17px 15px;
+    font-size: 20px;
+    color: #7D7D7D;
+}
+
+.maillist_item {
+    padding: 5px 0px 5px 5px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.maillist_item:hover {
+    background: rgba(0,0,0, 0.05);
+}
+
+.maillist_item_date {
+    color: rgba(0,0,0,0.4);
+    float: left;
+    width: 170px;
+    font-size: 11px;
+    text-align: left;
+    margin-top: 4px;
+}
+
+.maillist_item_title {
+    text-align: left;
+    font-weight: bold;
+    font-size: 13px;
+    color: black;
+}
+
+.maillist_item_text {
+    text-align: left;
+    font-size: 13px;
+    color: black;
+}
+
+.maillist_item_flag {
+    padding: 5px;
+    background: #FFF9C4;
+    color: #F57F17;
+    font-size: 8px;
+}
+
+.maillist_button {
+    padding: 5px;
+    text-align: center;
+    background: #E3F2FD;
+    font-weight: bold;
+    float: right;
+    width: 30px;
+    color: #2196F3;
+    margin: -26px 0 0 0;
+}
+
+.maillist_button:hover {
+    background: #90CAF9;
+}
+
+.maillist_button:active {
+    background: #0D47A1;
+    color: white;
+}
+
+.email_detail_main {
+    text-align: left;
+    padding: 10px;
+}
+
+.email_detail_date {
+    color: gray;
+    float: left;
+    font-size: 10px;
+    margin-bottom: 7px;
+}
+
+.email_detail_title {
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 7px;
+}
+
+.email_detail_sender {
+    color: gray;
+    float: right;
+    font-size: 10px;
+    margin-bottom: 7px;
+}
+
+.button {
+      display: inline-block;
+      position: relative;
+      width: 120px;
+      height: 32px;
+      line-height: 32px;
+      border-radius: 2px;
+      font-size: 0.9em;
+      background-color: #fff;
+      color: #646464;
+      margin-bottom: -10px;
+}
+
+.button > paper-ripple {
+      border-radius: 2px;
+      overflow: hidden;
+}
+
+.button.narrow {
+      width: 60px;
+}
+
+.button.blue {
+      background-color: #4285f4;
+      color: #fff;
+}
+
+.button.raised {
+    font-size: 12px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    background: #4285f4;
+    padding: 3px;
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 0.2s;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.button.raisedw {
+    font-size: 12px;
+    color: #4285f4;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    background: #FFFFFF;
+    padding: 3px;
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 0.2s;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.button.raisedr {
+    font-size: 12px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    background: #F44336;
+    padding: 3px;
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 0.2s;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.button.raised:active {
+      box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+      transition-delay: 0s;
+}
+
+h1 {
+    color: #2196F3;
+    font-family: 'Roboto Thin';
+}
+
+ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: inline-block;
+    width: 300px;
+    background-color: #fff;
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+}
+
+ul li {
+    margin: auto;
+    position: relative;
+    height: 48px;
+    line-height: 48px;
+    color: #646464;
+    font-size: 0.9em;
+}
+
+h2 		 { 
+  text-align:center; 
+  margin-bottom:50px; 
+}
+h2 small { 
+  font-weight:normal; 
+  color:#888; 
+  display:block; 
+}
+
+.act{
+    font-weight: bold;
+}
+
+.normal{
+    font-weight: normal;
+}
+
+input 				{
+  font-size:18px;
+  padding:7px 7px 7px 5px;
+  width:300px;
+  border:none;
+  border-bottom:1px solid #4285f4;
+  background: rgba(0,0,0,0);
+}

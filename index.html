@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+
+<html lang="en" ng-app="mail_client">
+	<head>
+        <script src="lib/angular.js"></script>
+        <script src="lib/angular-ui-router.js"></script>
+        
+        <script src="js/ctrl/Ctrl.js"></script>
+        
+        <link rel="import" href="components/bower_components/polymer/polymer.html">
+        <link rel="import" href="components/bower_components/paper-ripple/paper-ripple.html">
+        <link rel="import" href="components/bower_components/paper-button/paper-button.html">
+        <script src="components/bower_components/webcomponentsjs/webcomponents.js"></script>
+		<link rel="stylesheet" type="text/css" href="styl.css">
+        
+        <script type="text/css">
+        
+        .paper-ripple {
+            color: rgba(0,0,0, 0.2);
+        }
+        
+        </script>
+        
+        <meta charset="UTF-8">
+	</head>
+	<body>
+        <div class="content">
+            <h1>Klient poczty e-mail</h1>
+
+            <div id="navbar" style="position: relative; background: white; padding: 10px; padding-bottom: 18px; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);">
+                <div ui-sref="create" class="button raised" style="box-shadow: none;"><paper-ripple></paper-ripple>NOWY</div>
+                <div ui-sref="inbox" class="button raisedw" style="box-shadow: none;"><paper-ripple></paper-ripple>Odebrane</div>
+                <div ui-sref="sent" class="button raisedw" style="box-shadow: none;"><paper-ripple></paper-ripple>Wysłane</div> | 
+                <div ui-sref="config" class="button raisedw" style="box-shadow: none;"><paper-ripple></paper-ripple>Ustawienia</div>
+            </div>
+            <div id="page" style="background: white; margin-top: 10px; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);">
+                <div ui-view></div>
+            </div>
+            <div id="footer" style="background: white; padding: 20px; margin-top: 10px; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);" ng-controller="ConfigController">
+                Lista odebranych maili odświeża się co <b>{{ getSeconds() }}</b> sekund.
+            </div>
+
+        </div>
+    </div>
+
+	</body>
+</html>
