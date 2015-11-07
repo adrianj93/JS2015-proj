@@ -1,5 +1,5 @@
 <div class="page_title">Wiadomości odebrane</div>
-<div id="maillist" ng-repeat="item in emails | reverse">
+<div id="maillist" ng-repeat="item in emails | reverse" ng-init="getEmails">
     <div class="maillist_item" style="position: relative" ng-hide="showme">
         <paper-ripple fit></paper-ripple>
         <a href="#/view/{{item.id}}">

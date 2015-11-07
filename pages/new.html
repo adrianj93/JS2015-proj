@@ -2,15 +2,37 @@
 <div id="maillist">
     <div style="position: relative">
         <div class="email_detail_main">
-            <div>Tytuł</div>
-            <div><input type="text" name="title_textbox" style="width: 750px; margin-bottom: 20px;" ng-model="mail.title"></div>
-            <div>Email odbiorcy</div>
-            <div><input type="text" name="receivers_textbox" style="width: 750px; margin-bottom: 20px;" ng-model="mail.receivers[0]"></div>
-            <div>Treść</div>
-            <div><textarea name="content_textbox" style="width: 750px; height: 400px" ng-model="mail.content"></textarea></div>
-            <div style="margin-top: 10px; position: relative; width: 100px; height: 100px;">
-                <div class="button raised white" ui-sref="sent" ng-click="new_mail()"><paper-ripple></paper-ripple>Wyślij</div>
+        <form name="newMail">
+            <div>
+                Tytuł
+                <span class="errorTip" ng-show="newMail.title_textbox.$error.required">Uzpełniij poprawnie tytuł</span>
+                <span class="okTip" ng-hide="newMail.title_textbox.$error.required">OK</span>
             </div>
+                
+            <div>
+                <input type="text" name="title_textbox" style="width: 750px; margin-bottom: 20px;" ng-model="mail.title" required>
+            </div>
+            <div>
+                Email odbiorcy
+                <span class="errorTip" ng-show="newMail.receivers_textbox.$error.email">Uzpełniij poprawnie pole odbiorcy</span>
+                <span class="okTip" ng-hide="newMail.receivers_textbox.$error">OK</span>   
+            </div>
+            <div><input type="email" name="receivers_textbox" style="width: 750px; margin-bottom: 20px;" ng-model="mail.receivers[0]" required></div>
+            <div>
+                Treść
+                <span class="errorTip" ng-show="newMail.content_textbox.$error.required">Treść nie może być pusta</span>
+                <span class="okTip" ng-hide="newMail.content_textbox.$error.required">OK</span>   
+            </div>
+            <div><textarea name="content_textbox" style="width: 750px; height: 400px" ng-model="mail.content" required></textarea></div>
+            <div class="errorDiv" ng-show="newMail.receivers_textbox.$error.required || newMail.title_textbox.$error.required || newMail.content_textbox.$error.required">Opcja wysyłania uaktywni się po poprawnym wypełnieniu wszystkich pól. Powodzenia!</div>
+            <div style="margin-top: 10px; position: relative; width: 100px; height: 100px;">
+                <div class="button raised white" ng-click="new_mail()" ng-hide="newMail.receivers_textbox.$error.required || newMail.receivers_textbox.$error.email || newMail.title_textbox.$error.required || newMail.content_textbox.$error.required">
+                    <paper-ripple></paper-ripple>Wyślij
+                </div>
+            </div>
+            <div class="errorDiv" ng-show="errorDiv">UWAGA: Popraw błędy przed wysłaniem wiadomości.</div>
+        
+        </form>
         </div>
     </div>  
 </div>

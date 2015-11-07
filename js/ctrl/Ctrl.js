@@ -2,21 +2,20 @@ var seconds = 2;
 
 var mail_client = angular.module('mail_client', ['ui.router'])
         .controller('EmailController', function($scope, $http, $interval, $state) {
-            
-            
-            $scope.getEmails = $http.get('/server/data/emails.json')
-            .success(function (data, status, headers, config, statusText) {
-                $scope.emails = data;
-            }).error(function (data, status, headers, config, statusText) {
-                });
-            
-            $scope.intervalPromise = $interval(function(){     
+              
+            $scope.getEmails = function() {
                 $http.get('/server/data/emails.json')
             .success(function (data, status, headers, config, statusText) {
                 $scope.emails = data;
             }).error(function (data, status, headers, config, statusText) {
-                });
-            }, seconds*1000);
+                })
+            };
+            
+            $scope.getEmails();
+            
+            $scope.intervalPromise = $interval(function(){     
+                $scope.getEmails();
+            }, seconds*1000*60);
             
             $scope.delete_mail = function delete_mail(id, location) {
                 //var str1 = '/emails/';
@@ -69,8 +68,8 @@ var mail_client = angular.module('mail_client', ['ui.router'])
             $scope.mail.id = $scope.mail.sent;
             $scope.mail.receivers = [];
             
-            var div = document.getElementsByName("receivers_textbox");
-            div.value = "";
+            $scope.errorDiv = false;
+            $scope.wzorMaili = /^\S+@\S+\.\S+$/;
             
             $scope.new_mail = function new_mail(id) {
                 var str1 = '/sent';
@@ -81,17 +80,24 @@ var mail_client = angular.module('mail_client', ['ui.router'])
                     console.log("Wysłano");
                 }).error(function (data, status, headers, config, statusText) {
                     console.log("NIE Wysłano");
-                    console.log($scope.mail);
+                    $scope.errorDiv = true;
                     })
             }
         })
         .controller('ConfigController', function($scope, $http, $stateParams) {
+            $scope.errorDiv = false;
+            
             $scope.getSeconds = function getSeconds() {
                 return seconds;
             };
             
             $scope.setSeconds = function setSeconds(seconds_new) {
-                seconds = seconds_new;
+                if (seconds_new == null) {
+                    $scope.errorDiv = true;
+                } else {
+                    seconds = seconds_new;
+                    $scope.errorDiv = false;
+                }          
             }
         })
         .filter('cut', function () {
