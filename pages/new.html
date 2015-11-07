@@ -15,7 +15,7 @@
             <div>
                 Email odbiorcy
                 <span class="errorTip" ng-show="newMail.receivers_textbox.$error.email">Uzpełniij poprawnie pole odbiorcy</span>
-                <span class="okTip" ng-hide="newMail.receivers_textbox.$error">OK</span>   
+                <span class="okTip" ng-hide="newMail.receivers_textbox.$error.email || newMail.receivers_textbox.$error.required">OK</span>   
             </div>
             <div><input type="email" name="receivers_textbox" style="width: 750px; margin-bottom: 20px;" ng-model="mail.receivers[0]" required></div>
             <div>
@@ -26,7 +26,7 @@
             <div><textarea name="content_textbox" style="width: 750px; height: 400px" ng-model="mail.content" required></textarea></div>
             <div class="errorDiv" ng-show="newMail.receivers_textbox.$error.required || newMail.title_textbox.$error.required || newMail.content_textbox.$error.required">Opcja wysyłania uaktywni się po poprawnym wypełnieniu wszystkich pól. Powodzenia!</div>
             <div style="margin-top: 10px; position: relative; width: 100px; height: 100px;">
-                <div class="button raised white" ng-click="new_mail()" ng-hide="newMail.receivers_textbox.$error.required || newMail.receivers_textbox.$error.email || newMail.title_textbox.$error.required || newMail.content_textbox.$error.required">
+                <div class="button raised white" ng-click="new_mail()" ui-sref="sent" ng-hide="newMail.receivers_textbox.$error.required || newMail.receivers_textbox.$error.email || newMail.title_textbox.$error.required || newMail.content_textbox.$error.required">
                     <paper-ripple></paper-ripple>Wyślij
                 </div>
             </div>

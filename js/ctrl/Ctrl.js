@@ -1,8 +1,7 @@
 var seconds = 2;
 
 var mail_client = angular.module('mail_client', ['ui.router'])
-        .controller('EmailController', function($scope, $http, $interval, $state) {
-              
+        .controller('EmailController', function($scope, $http, $interval, $state) {  
             $scope.getEmails = function() {
                 $http.get('/server/data/emails.json')
             .success(function (data, status, headers, config, statusText) {
@@ -29,12 +28,14 @@ var mail_client = angular.module('mail_client', ['ui.router'])
                     })
             }      
         })
+
         .controller('SentController', function($scope, $http) {
             $http.get('/server/data/sent.json')
             .success(function (data, status, headers, config, statusText) {
                 $scope.emails = data;
             }).error(function (data, status, headers, config, statusText) {
         })})
+
         .controller('EmailDetailController', function($scope, $http, $stateParams) {
             $scope.mailId = $stateParams.mailId;
             var str1 = '/emails/';
@@ -62,14 +63,25 @@ var mail_client = angular.module('mail_client', ['ui.router'])
                 $scope.email = data;
             }).error(function (data, status, headers, config, statusText) {})            
         })
-        .controller('CreateController', function($scope, $http, $stateParams) {
+
+        .controller('CreateController', function($scope, $http, $stateParams) {    
             $scope.mail = {};
             $scope.mail.sent = Number(new Date());
             $scope.mail.id = $scope.mail.sent;
             $scope.mail.receivers = [];
             
+            if ($stateParams.mailId != undefined) {
+                var str1 = '/emails/';
+                var str2 = str1.concat($stateParams.mailId);
+                $http.get(str2)
+                .success(function (data, status, headers, config, statusText) {
+                    $scope.mail.title = "RE: " + data.title;
+                    $scope.mail.receivers[0] = data.sender;
+                    $scope.mail.content = "\n\n-------------------\nPoprzednia wiadomość:\n-------------------\n" + data.content;
+                });
+            }
+            
             $scope.errorDiv = false;
-            $scope.wzorMaili = /^\S+@\S+\.\S+$/;
             
             $scope.new_mail = function new_mail(id) {
                 var str1 = '/sent';
@@ -84,6 +96,7 @@ var mail_client = angular.module('mail_client', ['ui.router'])
                     })
             }
         })
+
         .controller('ConfigController', function($scope, $http, $stateParams) {
             $scope.errorDiv = false;
             
@@ -100,6 +113,7 @@ var mail_client = angular.module('mail_client', ['ui.router'])
                 }          
             }
         })
+
         .filter('cut', function () {
             return function (value, wordwise, max, tail) {
                 if (!value) return '';
@@ -125,8 +139,14 @@ var mail_client = angular.module('mail_client', ['ui.router'])
               return items.slice().reverse();
           };
         })
+
         .config(function($stateProvider) {
             $stateProvider
+            .state('index', {
+                url: "",
+                controller: 'EmailController',
+                templateUrl: "pages/home.html"
+            })       
             .state('inbox', {
                 url: "/inbox",
                 controller: 'EmailController',
@@ -141,14 +161,14 @@ var mail_client = angular.module('mail_client', ['ui.router'])
                 url: "/view/:mailId",
                 controller: 'EmailDetailController',
                 templateUrl: "pages/detail.html"
-            })   
-            .state('mail', {
-                url: "/mail/:mailId",
-                controller: 'EmailDetailController',
-                templateUrl: "pages/detail.html"
-            })             
+            })               
             .state('create', {
                 url: "/create",
+                controller: 'CreateController',
+                templateUrl: "pages/new.html"
+            })   
+            .state('create_respond', {
+                url: "/create/:mailId",
                 controller: 'CreateController',
                 templateUrl: "pages/new.html"
             })   

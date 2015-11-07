@@ -6,8 +6,8 @@
         <div class="maillist_item_content">
             <div class="maillist_item_date">{{ item.sender }}</div>
             <span class="maillist_item_flag" ng-hide="{{item.read}}">NOWY</span>
-            <span class="maillist_item_title">{{ item.title | cut:true:60 }}</span>
-            <span class="maillist_item_text">{{ item.content | cut:true:15 }}</span>
+            <span class="maillist_item_title">{{ item.title | cut:true:55 }}</span>
+            <span class="maillist_item_text">{{ item.content | cut:true:25 }}</span>
         </div>
         </a>
         <div ng-click="delete_mail(item.id, '/emails/'); showme=true" class="maillist_button">X</div>
