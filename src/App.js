@@ -1,32 +1,6 @@
 var seconds = 2;
 
 var mail_client = angular.module('mail_client', ['ui.router'])
-        .filter('cut', function () {
-            return function (value, wordwise, max, tail) {
-                if (!value) return '';
-
-                max = parseInt(max, 10);
-                if (!max) return value;
-                if (value.length <= max) return value;
-
-                value = value.substr(0, max);
-                if (wordwise) {
-                    var lastspace = value.lastIndexOf(' ');
-                    if (lastspace != -1) {
-                        value = value.substr(0, lastspace);
-                    }
-                }
-
-                return value + (tail || '…');
-            };
-        })
-        .filter('reverse', function() {
-          return function(items) {
-            if (!items || !items.length) { return; }
-              return items.slice().reverse();
-          };
-        })
-
         .config(function($stateProvider) {
             $stateProvider
             .state('index', {
